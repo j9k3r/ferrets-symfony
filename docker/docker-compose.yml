@@ -11,7 +11,7 @@ services:
       - ../:/app
     working_dir: /app
     environment:
-      - SYMFONY_VERSION=6.2.*
+      - SYMFONY_VERSION=7.0.*
 
   nginx:
     image: nginx
