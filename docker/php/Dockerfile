@@ -1,4 +1,4 @@
-FROM php:8.1-fpm-alpine
+FROM php:8.3-fpm-alpine
 
 # Install dev dependencies
 RUN apk update \
@@ -33,14 +33,19 @@ RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/bin -
 
 # Install PHP extensions
 RUN docker-php-ext-configure gd --with-freetype=/usr/include/ --with-jpeg=/usr/include/
+
+# Установка дополнительных зависимостей
+RUN apk add --no-cache linux-headers
+
+# Установка PHP расширений
 RUN docker-php-ext-install -j$(getconf _NPROCESSORS_ONLN) \
     intl \
     gd \
     bcmath \
     pdo_pgsql \
     sockets \
-    zip
-RUN pecl channel-update pecl.php.net \
+    zip && \
+    pecl channel-update pecl.php.net \
     && pecl install -o -f \
         redis \
         event \
