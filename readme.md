@@ -21,7 +21,7 @@ docker rmi docker_php-fpm
 Обязательные:
  DB_HOST=
 ```
-* Swagger: http://futurestart.ru/api/auth/documentation?token={**token**} - документация доступна только для  **super_admin**
+* Swagger:  - документация доступна только для  **super_admin**
 
 ## После настройки
 ```
