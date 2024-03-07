@@ -1,0 +1,14 @@
+controllers:
+    resource:
+        path: ../src/Shared/Infrastructure/Controller/
+        namespace: App\Shared\Infrastructure\Controller
+#        namespace: App\Controller
+
+    type: attribute
+
+kernel:
+    resource: ../src/Shared/Infrastructure/Kernel.php
+    type: attribute
+
+api_login_check:
+    path: /api/login_check

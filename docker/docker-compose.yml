@@ -7,11 +7,14 @@ services:
     container_name: 'php'
     ports:
       - '9000:9000'
+      - '9004:9003'
     volumes:
       - ../:/app
+      - ./php/xdebug.ini:/usr/local/etc/php/conf.d/xdebug.ini
     working_dir: /app
     environment:
       - SYMFONY_VERSION=7.0.4
+      - PHP_IDE_CONFIG=serverName=Docker
 
   nginx:
     image: nginx

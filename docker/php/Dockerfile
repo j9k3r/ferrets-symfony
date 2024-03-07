@@ -1,5 +1,12 @@
 FROM php:8.3-fpm-alpine
 
+#ARG PUID=1000
+#ARG PGID=1000
+
+#RUN apk --no-cache add shadow && \
+#    groupmod -g ${PGID} www-data && \
+#    usermod -u ${PUID} -g www-data www-data
+
 # Install dev dependencies
 RUN apk update \
     && apk upgrade --available \
@@ -31,6 +38,8 @@ RUN apk update \
 # Install Composer
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/bin --filename=composer
 
+
+
 # Install PHP extensions
 RUN docker-php-ext-configure gd --with-freetype=/usr/include/ --with-jpeg=/usr/include/
 
@@ -52,6 +61,11 @@ RUN docker-php-ext-install -j$(getconf _NPROCESSORS_ONLN) \
     && rm -rf /tmp/pear \
     && echo "extension=redis.so" > /usr/local/etc/php/conf.d/redis.ini \
     && echo "extension=event.so" > /usr/local/etc/php/conf.d/event.ini
+
+#xdebug
+RUN apk add --update linux-headers
+RUN pecl install xdebug && docker-php-ext-enable xdebug
+COPY xdebug.ini /usr/local/etc/php/conf.d/xdebug.ini
 
 #install Symfony
 COPY . /app/docker/php
