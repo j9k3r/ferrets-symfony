@@ -22,6 +22,8 @@ doctrine:
                 dir: '%kernel.project_dir%/src/Users/infrastructure/Database/ORM'
                 prefix: 'App\Users\Domain\Entity'
                 alias: Users
+
+
 #            App:
 #                type: attribute
 #                is_bundle: false

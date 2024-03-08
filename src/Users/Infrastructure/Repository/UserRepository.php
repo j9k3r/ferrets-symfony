@@ -16,8 +16,10 @@ class UserRepository extends ServiceEntityRepository implements UserRepositoryIn
 
     public function add(User $user): void
     {
-        $this->_em->persist($user);
-        $this->_em->flush();
+//        $this->_em->persist($user);
+        $this->getEntityManager()->persist($user);
+        $this->getEntityManager()->flush();
+//        $this->_em->flush();
     }
 
     public function findByUlid(string $ulid) :User
