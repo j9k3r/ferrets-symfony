@@ -36,5 +36,16 @@ php bin/console lexik:jwt:generate-keypair //генерация ключ пар�
 * [lexik/LexikJWTAuthenticationBundle](https://github.com/lexik/LexikJWTAuthenticationBundle)
 * [markitosgv/JWTRefreshTokenBundle](https://github.com/markitosgv/JWTRefreshTokenBundle)
 
-#### Консольные команды
+#### Unit
+* [phpunit/phpunit](https://phpunit-documentation-russian.readthedocs.io/ru/latest/installation.html) [symfony/test-pack](https://packagist.org/packages/symfony/test-pack)
+* [dama/doctrine-test-bundle](https://packagist.org/packages/dama/doctrine-test-bundle) // плагин работы с доктриной
+* [webmozart/assert](https://github.com/webmozarts/assert) // продвинутые асерты
+* [liip/test-fixtures-bundle](https://github.com/liip/LiipTestFixturesBundle) // фикстуры
+* [fakerphp/faker](https://packagist.org/packages/fakerphp/faker)
+
+#### Doctrine
+* [symfony/orm-pack](https://packagist.org/packages/symfony/orm-pack)
+* [symfony/uid](https://github.com/symfony/uid)
+
+### Консольные команды
 * php bin/console app:users:create-user // создание пользователя 
