@@ -27,5 +27,14 @@ docker rmi docker_php-fpm
 
 ## После настройки
 ```
+php bin/console lexik:jwt:generate-keypair //генерация ключ пары
 
 ```
+
+### Содержит пакеты:
+#### JWT
+* [lexik/LexikJWTAuthenticationBundle](https://github.com/lexik/LexikJWTAuthenticationBundle)
+* [markitosgv/JWTRefreshTokenBundle](https://github.com/markitosgv/JWTRefreshTokenBundle)
+
+#### Консольные команды
+* php bin/console app:users:create-user // создание пользователя 

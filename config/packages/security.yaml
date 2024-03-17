@@ -7,27 +7,41 @@ security:
         # used to reload user from session & other features (e.g. switch_user)
         app_user_provider:
             entity:
-                class: App\Entity\User
+                class: App\Users\Domain\Entity\User
                 property: email
     firewalls:
-        dev:
-            pattern: ^/(_(profiler|wdt)|css|images|js)/
-            security: false
-        main:
-            lazy: true
-            provider: app_user_provider
+#        login:
+#            pattern: ^/api/login
+#            pattern: ^/api/auth/token/login
+#            stateless: true
+#            json_login:
+#                check_path: /api/auth/token/login
+#                check_path: /api/login_check
+#                username_path: email
+#                password_path: password
+#                success_handler: lexik_jwt_authentication.handler.authentication_success
+#                failure_handler: lexik_jwt_authentication.handler.authentication_failure
 
-            # activate different ways to authenticate
-            # https://symfony.com/doc/current/security.html#the-firewall
+        api:
+            pattern:   ^/api
+            stateless: true
+            entry_point: jwt
+            json_login:
+#                check_path: /api/login
+                check_path: /api/auth/token/login # or, if you have defined a route for your login path, the route name you used
+                username_path: email
+                password_path: password
+                success_handler: lexik_jwt_authentication.handler.authentication_success
+                failure_handler: lexik_jwt_authentication.handler.authentication_failure
+            jwt: ~
+            refresh_jwt:
+                check_path: /api/auth/token/refresh # or, you may use the `api_refresh_token` route name
 
-            # https://symfony.com/doc/current/security/impersonating_user.html
-            # switch_user: true
-
-    # Easy way to control access for large sections of your site
-    # Note: Only the *first* access control that matches will be used
     access_control:
-        # - { path: ^/admin, roles: ROLE_ADMIN }
-        # - { path: ^/profile, roles: ROLE_USER }
+        - { path: ^/api/auth/token/login, roles: PUBLIC_ACCESS }
+#        - { path: ^/api/login, roles: PUBLIC_ACCESS  }
+        - { path: ^/api/auth/token/refresh, roles: PUBLIC_ACCESS }
+        - { path: ^/api/users/me,       roles: IS_AUTHENTICATED_FULLY }
 
 when@test:
     security:
@@ -37,7 +51,8 @@ when@test:
             # are not important, waste resources and increase test times. The following
             # reduces the work factor to the lowest possible values.
             Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface:
-                algorithm: auto
-                cost: 4 # Lowest possible value for bcrypt
-                time_cost: 3 # Lowest possible value for argon
-                memory_cost: 10 # Lowest possible value for argon
+                algorithm: plaintext
+#                algorithm: auto
+#                cost: 4 # Lowest possible value for bcrypt
+#                time_cost: 3 # Lowest possible value for argon
+#                memory_cost: 10 # Lowest possible value for argon
