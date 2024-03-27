@@ -41,7 +41,16 @@ class CreateUser extends Command
             return $input;
         });
 
-        $user = $this->userFactory->create($email, $password);
+        $roles = [
+            'ROLE_DEPUTY_DIRECTOR',
+            'ROLE_DIRECTOR',
+            'ROLE_MODERATOR',
+            'ROLE_ADMIN'
+        ];
+
+        $selectedRoles = $io->choice('Select roles', $roles, [], true);
+
+        $user = $this->userFactory->create($email, $password, $selectedRoles);
         $this->userRepository->add($user);
 
         return Command::SUCCESS;

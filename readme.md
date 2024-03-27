@@ -48,4 +48,8 @@ php bin/console lexik:jwt:generate-keypair //генерация ключ пар�
 * [symfony/uid](https://github.com/symfony/uid)
 
 ### Консольные команды
-* php bin/console app:users:create-user // создание пользователя 
+* php bin/console app:users:create-user // создание пользователя
+
+
+#### Остальное
+[mapping user orm xml](https://www.doctrine-project.org/projects/doctrine-orm/en/3.1/reference/basic-mapping.html)
