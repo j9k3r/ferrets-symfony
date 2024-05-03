@@ -12,7 +12,6 @@ class HealthCheckActionTest extends WebTestCase
     {
         $client = static::createClient();
         $client->request(Request::METHOD_GET, '/health-check');
-
         $this->assertResponseIsSuccessful();
         $jsonResult = json_decode($client->getResponse()->getContent(), true);
         $this->assertEquals($jsonResult['status'], 'ok');

@@ -12,6 +12,7 @@ class HealthCheckAction
 {
     public function __invoke(): Response
     {
+        $test = 123;
         return new JsonResponse(['status' => 'ok']);
     }
 }

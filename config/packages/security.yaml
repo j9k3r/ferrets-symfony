@@ -16,7 +16,18 @@ security:
                 class: App\Users\Domain\Entity\User
                 property: email
     firewalls:
-#        login:
+## //Todo  Выполнять проверку при логинеи регистриации email и если он в верхнем регистре то переводит в нижний
+#main:
+#    #            pattern: ^/api
+#    pattern: ^/ //Todo при чекере зависает
+#    user_checker: App\Users\Infrastructure\Security\UserChecker
+##        login:
+##            pattern: ^/api/auth/token/login
+##            user_checker: Users/Infrastructure/Security/UserChecker
+
+
+
+        #        login:
 #            pattern: ^/api/login
 #            pattern: ^/api/auth/token/login
 #            stateless: true

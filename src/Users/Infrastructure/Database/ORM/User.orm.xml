@@ -10,6 +10,10 @@
         <field name="email" type="string" unique="true"/>
         <field name="password" type="string" nullable="true"/>
         <field name="roles" type="array" nullable="true"/>
+        <lifecycle-callbacks>
+                <lifecycle-callback type="prePersist" method="setEmailToLowercase" />
+                <lifecycle-callback type="preUpdate" method="setEmailToLowercase" />
+        </lifecycle-callbacks>
 </entity>
 
 </doctrine-mapping>

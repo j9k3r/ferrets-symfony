@@ -35,6 +35,16 @@ class User implements AuthUserInterface
         return $this->email;
     }
 
+//    public function setEmail($email)
+//    {
+//        $this->email = $email;
+//    }
+
+    public function setEmailToLowercase()
+    {
+        $this->email = strtolower($this->email);
+    }
+
     public function getPassword(): ?string
     {
         return $this->password;

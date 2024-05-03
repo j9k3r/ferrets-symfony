@@ -32,5 +32,15 @@ services:
     App\Users\Infrastructure\Controller\:
         resource: '../src/Users/Infrastructure/Controller/'
         tags: ['controller.service_arguments']
+
+    App\Users\Infrastructure\EventListener\AuthenticationSuccessListener:
+        tags:
+            - { name: kernel.event_listener, event: lexik_jwt_authentication.on_authentication_success, method: onAuthenticationSuccessResponse }
+
+#    App\Users\Infrastructure\EventListener\EmailToLowerCaseEventListener:
+#        tags:
+#            - { name: doctrine.event_listener, event: prePersist }
+#            - { name: doctrine.event_listener, event: preUpdate }
+
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones

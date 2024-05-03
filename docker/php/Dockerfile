@@ -1,11 +1,11 @@
 FROM php:8.3-fpm-alpine
 
-#ARG PUID=1000
-#ARG PGID=1000
+ARG PUID=1000
+ARG PGID=1000
 
-#RUN apk --no-cache add shadow && \
-#    groupmod -g ${PGID} www-data && \
-#    usermod -u ${PUID} -g www-data www-data
+RUN apk --no-cache add shadow && \
+    groupmod -g ${PGID} www-data && \
+    usermod -u ${PUID} -g www-data www-data
 
 # Install dev dependencies
 RUN apk update \
@@ -65,9 +65,9 @@ RUN docker-php-ext-install -j$(getconf _NPROCESSORS_ONLN) \
 #xdebug
 RUN apk add --update linux-headers
 RUN pecl install xdebug && docker-php-ext-enable xdebug
-COPY xdebug.ini /usr/local/etc/php/conf.d/xdebug.ini
+COPY ./php/xdebug.ini /usr/local/etc/php/conf.d/xdebug.ini
 
 #install Symfony
-COPY . /app/docker/php
+COPY ./php /app/docker/php
 RUN chmod +x /app/docker/php/setup.sh
 #RUN /app/docker/php/setup.sh

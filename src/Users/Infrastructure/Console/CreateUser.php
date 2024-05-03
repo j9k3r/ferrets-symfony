@@ -48,7 +48,7 @@ class CreateUser extends Command
             'ROLE_ADMIN'
         ];
 
-        $selectedRoles = $io->choice('Select roles', $roles, [], true);
+        $selectedRoles = $io->choice('Select roles', $roles, null, true);
 
         $user = $this->userFactory->create($email, $password, $selectedRoles);
         $this->userRepository->add($user);
