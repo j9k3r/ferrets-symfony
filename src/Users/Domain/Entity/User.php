@@ -15,6 +15,8 @@ class User implements AuthUserInterface
     private ?string $password = null;
     private array $roles = [];
 
+    private bool $blocked;
+
     /**
      * @param string $email
      * @param string $password
@@ -33,6 +35,11 @@ class User implements AuthUserInterface
     public function getEmail(): string
     {
         return $this->email;
+    }
+
+    public function getBlocked(): bool
+    {
+        return $this->blocked;
     }
 
 //    public function setEmail($email)

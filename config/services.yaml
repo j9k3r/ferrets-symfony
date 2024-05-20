@@ -33,6 +33,11 @@ services:
         resource: '../src/Users/Infrastructure/Controller/'
         tags: ['controller.service_arguments']
 
+    app.custom_guard_authenticator:
+        class: App\Users\Infrastructure\Security\CustomGuardAuthenticator
+        parent: lexik_jwt_authentication.security.jwt_authenticator
+
+
     App\Users\Infrastructure\EventListener\AuthenticationSuccessListener:
         tags:
             - { name: kernel.event_listener, event: lexik_jwt_authentication.on_authentication_success, method: onAuthenticationSuccessResponse }

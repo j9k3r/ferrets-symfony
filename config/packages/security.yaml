@@ -42,7 +42,10 @@ security:
         api:
             pattern:   ^/api
             stateless: true
+            jwt:
+                authenticator: app.custom_guard_authenticator
             entry_point: jwt
+            #                    - App\Users\Infrastructure\Security\CustomGuardAuthenticator
             json_login:
 #                check_path: /api/login
                 check_path: /api/auth/token/login # or, if you have defined a route for your login path, the route name you used
@@ -50,7 +53,6 @@ security:
                 password_path: password
                 success_handler: lexik_jwt_authentication.handler.authentication_success
                 failure_handler: lexik_jwt_authentication.handler.authentication_failure
-            jwt: ~
             refresh_jwt:
                 check_path: /api/auth/token/refresh # or, you may use the `api_refresh_token` route name
 
