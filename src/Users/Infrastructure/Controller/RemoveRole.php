@@ -17,7 +17,7 @@ class RemoveRole
         private readonly UserRepository $userRepository,
         private readonly UserFactory $userFactory){}
 
-    public function __invoke(Request $request) //Todo доделать установку ролей
+    public function __invoke(Request $request)
     {
         $user = $this->userFetcher->getAuthUser();
         $req = json_decode($request->getContent());

@@ -10,7 +10,7 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\Routing\Attribute\Route;
 
 #[Route('/api/users/role', methods: ['POST'])]
-class SetRole
+class AddRole
 {
     public function __construct(
         private readonly UserFetcherInterface $userFetcher,

@@ -18,7 +18,7 @@ class UserFactory
         $user->setPassword($password, $this->passwordHasher);
 
         $makeRoles = ['ROLE_USER'];
-        $user->setRoles(array_merge($makeRoles, $roles));
+        $user->addRoles(array_merge($makeRoles, $roles));
 
         return $user;
     }
@@ -28,13 +28,13 @@ class UserFactory
         $user = new User($email);
         $user->setPassword($password, $this->passwordHasher);
         $makeRoles = ['ROLE_USER'];
-        $user->setRoles(array_merge($makeRoles, $roles));
+        $user->addRoles(array_merge($makeRoles, $roles));
 
         return $user;
     }
     public function addRoles(User $user, array $roles): User
     {
-        $user->setRoles($roles);
+        $user->addRoles($roles);
         return $user;
     }
 

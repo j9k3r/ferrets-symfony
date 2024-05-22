@@ -69,7 +69,7 @@ class User implements AuthUserInterface
         return array_unique($roles);
     }
 
-    public function setRoles(array $roles): static
+    public function addRoles(array $roles): static
     {
         $this->roles = $roles;
 
