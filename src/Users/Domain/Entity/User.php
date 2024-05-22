@@ -57,7 +57,9 @@ class User implements AuthUserInterface
         return $this->password;
     }
 
-
+    public function hasRole($role) {
+        return in_array($role, $this->roles);
+    }
     public function getRoles(): array
     {
         $roles = $this->roles;
@@ -72,6 +74,11 @@ class User implements AuthUserInterface
         $this->roles = $roles;
 
         return $this;
+    }
+
+    public function removeRole($role) {
+        $index = array_search($role, $this->roles);
+        unset($this->roles[$index]);
     }
 
     public function eraseCredentials(): void

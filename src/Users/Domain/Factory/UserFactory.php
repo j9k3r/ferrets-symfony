@@ -47,7 +47,7 @@ class UserFactory
 
         return $user;
     }
-    public function updateRoles(User $user, array $roles): User
+    public function addRoles(User $user, array $roles): User
     {
 //        $user = new User($email);
 
@@ -62,6 +62,28 @@ class UserFactory
 
         $user->setRoles($roles);
 
+
+        return $user;
+    }
+
+    public function removeRoles(User $user, array $roles): User
+    {
+//        $user = new User($email);
+
+
+//        $user->setPassword($password, $this->passwordHasher);
+
+//        $makeRoles = ['ROLE_USER'];
+//        if (count($roles) === 0) {
+//            $makeRoles[] = 'ROLE_USER';
+//        }
+//        dd($user);
+
+//        $user->setRoles($roles);
+
+        foreach ($roles as $role) {
+            $user->removeRole($role);
+        }
 
         return $user;
     }
