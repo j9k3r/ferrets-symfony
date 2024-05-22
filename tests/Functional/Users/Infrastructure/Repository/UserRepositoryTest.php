@@ -32,7 +32,7 @@ class UserRepositoryTest extends WebTestCase
         $user = $this->userFactory->create($email, $password);
 
         // act
-        $this->repository->add($user);
+        $this->repository->update($user);
 
         //assert
         $existingUser = $this->repository->findByUlid($user->getUlid());

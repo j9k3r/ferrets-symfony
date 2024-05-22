@@ -18,7 +18,7 @@ class CreateUserCommandHandler implements CommandHandlerInterface
     public function __invoke(CreateUserCommand $createUserCommand) :string
     {
        $user = $this->userFactory->create($createUserCommand->email, $createUserCommand->password);
-       $this->userRepository->add($user);
+       $this->userRepository->update($user);
 
        return $user->getUlid();
     }

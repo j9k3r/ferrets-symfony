@@ -19,28 +19,16 @@ class RemoveRole
 
     public function __invoke(Request $request) //Todo доделать установку ролей
     {
-//        dd('this delete');
         $user = $this->userFetcher->getAuthUser();
         $req = json_decode($request->getContent());
 
         $roles = $user->getRoles();
         $deleteRoles = $req->roles;
-//        $mergedRoles = array_unique(array_merge($roles, $deleteRoles));
-
 
         if (in_array("ROLE_ADMIN", $roles)) {
-//        dd($request->getContent());
-//        dd($request->getPayload()->get('roles'));
-
             $userUpdate = $this->userRepository->findByEmail($req->email);
-//            $userUpdateRoles = $userUpdate->getRoles();
-//            $mergedRoles = array_unique(array_merge($userUpdateRoles, $deleteRoles));
-//        dd($mergedRoles);
-
-//        dd($userUpdate);
-
             $updUser = $this->userFactory->removeRoles($userUpdate, $deleteRoles);
-            $this->userRepository->add($updUser);
+            $this->userRepository->update($updUser);
 
             return new JsonResponse([
                 'email' => $updUser->getEmail(),

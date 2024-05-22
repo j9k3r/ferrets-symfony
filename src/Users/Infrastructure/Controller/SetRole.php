@@ -24,23 +24,14 @@ class SetRole
 
         $roles = $user->getRoles();
         $newRoles =  $req->roles;
-//        $mergedRoles = array_unique(array_merge($roles, $newRoles));
-
-
 
         if (in_array("ROLE_ADMIN", $roles)) {
-//        dd($request->getContent());
-//        dd($request->getPayload()->get('roles'));
-
             $userUpdate = $this->userRepository->findByEmail($req->email);
             $userUpdateRoles = $userUpdate->getRoles();
             $mergedRoles = array_unique(array_merge($userUpdateRoles, $newRoles));
-//        dd($mergedRoles);
-
-//        dd($userUpdate);
 
             $updUser = $this->userFactory->addRoles($userUpdate, $mergedRoles);
-            $this->userRepository->add($updUser);
+            $this->userRepository->update($updUser);
 
             return new JsonResponse([
                 'email' => $updUser->getEmail(),

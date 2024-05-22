@@ -14,7 +14,7 @@ class UserRepository extends ServiceEntityRepository implements UserRepositoryIn
         parent::__construct($registry, User::class);
     }
 
-    public function add(User $user): void
+    public function update(User $user): void
     {
 //        $this->_em->persist($user);
         $this->getEntityManager()->persist($user);
